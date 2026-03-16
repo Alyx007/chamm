@@ -33,30 +33,30 @@
 </script>
 
 <Modal {open} title="Add Event" onclose={() => open = false}>
-	<form onsubmit={submit} class="space-y-4">
+	<form onsubmit={(e: SubmitEvent) => { e.preventDefault(); submit(); }} class="space-y-4">
 		<div>
-			<label class={labelClass}>Title</label>
-			<input type="text" bind:value={title} placeholder="Event name" class={inputClass} />
+			<label for="event-title" class={labelClass}>Title</label>
+			<input id="event-title" type="text" bind:value={title} placeholder="Event name" class={inputClass} />
 		</div>
 
 		<div>
-			<label class={labelClass}>Date</label>
-			<input type="date" bind:value={date} class={inputClass} />
+			<label for="event-date" class={labelClass}>Date</label>
+			<input id="event-date" type="date" bind:value={date} class={inputClass} />
 		</div>
 
 		<div class="grid grid-cols-2 gap-3">
 			<div>
-				<label class={labelClass}>Start</label>
-				<input type="time" bind:value={startTime} class={inputClass} />
+				<label for="event-start" class={labelClass}>Start</label>
+				<input id="event-start" type="time" bind:value={startTime} class={inputClass} />
 			</div>
 			<div>
-				<label class={labelClass}>End</label>
-				<input type="time" bind:value={endTime} class={inputClass} />
+				<label for="event-end" class={labelClass}>End</label>
+				<input id="event-end" type="time" bind:value={endTime} class={inputClass} />
 			</div>
 		</div>
 
 		<div>
-			<label class={labelClass}>Color</label>
+			<span id="event-color-label" class={labelClass}>Color</span>
 			<div class="flex gap-2">
 				{#each colors as c}
 					<button

@@ -12,9 +12,14 @@
 
 	let settingsOpen = $state(false);
 
+	function handleKeydown(e: KeyboardEvent) {
+		if (e.key === 'Escape' && settingsOpen) settingsOpen = false;
+	}
+
 	const initial = $derived($currentUser?.nick?.charAt(0)?.toUpperCase() ?? '?');
 </script>
 
+<svelte:window onkeydown={handleKeydown} />
 <header class="flex items-center justify-between border-b border-surface-700 bg-surface-800/50 px-6 py-3">
 	<div class="flex items-center gap-3">
 		<h1 class="text-lg font-semibold text-surface-100">
@@ -28,7 +33,7 @@
 		<span class="mr-2 hidden text-sm text-surface-400 sm:block">{dateStr}</span>
 
 		<!-- Search -->
-		<button class="flex h-9 w-9 items-center justify-center rounded-lg text-surface-400 transition hover:bg-surface-700 hover:text-surface-200">
+		<button aria-label="Search" class="flex h-9 w-9 items-center justify-center rounded-lg text-surface-400 transition hover:bg-surface-700 hover:text-surface-200">
 			<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
 				<circle cx="11" cy="11" r="8" />
 				<line x1="21" y1="21" x2="16.65" y2="16.65" />
@@ -36,7 +41,7 @@
 		</button>
 
 		<!-- Notifications -->
-		<button class="relative flex h-9 w-9 items-center justify-center rounded-lg text-surface-400 transition hover:bg-surface-700 hover:text-surface-200">
+		<button aria-label="Notifications" class="relative flex h-9 w-9 items-center justify-center rounded-lg text-surface-400 transition hover:bg-surface-700 hover:text-surface-200">
 			<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
 				<path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" />
 				<path d="M13.73 21a2 2 0 01-3.46 0" />
@@ -47,6 +52,7 @@
 		<!-- Settings with dropdown -->
 		<div class="relative">
 			<button
+				aria-label="Settings"
 				class="flex h-9 w-9 items-center justify-center rounded-lg text-surface-400 transition hover:bg-surface-700 hover:text-surface-200"
 				onclick={() => settingsOpen = !settingsOpen}
 			>

@@ -28,10 +28,11 @@
 </script>
 
 <Modal {open} title="Add Task" onclose={() => open = false}>
-	<form onsubmit={submit} class="space-y-4">
+	<form onsubmit={(e: SubmitEvent) => { e.preventDefault(); submit(); }} class="space-y-4">
 		<div>
-			<label class={labelClass}>Title</label>
+			<label for="task-title" class={labelClass}>Title</label>
 			<input
+				id="task-title"
 				type="text"
 				bind:value={title}
 				placeholder="What needs to be done?"
@@ -41,24 +42,24 @@
 
 		<div class="grid grid-cols-3 gap-3">
 			<div>
-				<label class={labelClass}>Source</label>
-				<select bind:value={source} class={inputClass}>
+				<label for="task-source" class={labelClass}>Source</label>
+				<select id="task-source" bind:value={source} class={inputClass}>
 					{#each sources as s}
 						<option value={s}>{s}</option>
 					{/each}
 				</select>
 			</div>
 			<div>
-				<label class={labelClass}>Priority</label>
-				<select bind:value={priority} class={inputClass}>
+				<label for="task-priority" class={labelClass}>Priority</label>
+				<select id="task-priority" bind:value={priority} class={inputClass}>
 					{#each priorities as p}
 						<option value={p}>{p}</option>
 					{/each}
 				</select>
 			</div>
 			<div>
-				<label class={labelClass}>Status</label>
-				<select bind:value={status} class={inputClass}>
+				<label for="task-status" class={labelClass}>Status</label>
+				<select id="task-status" bind:value={status} class={inputClass}>
 					{#each statuses as st}
 						<option value={st}>{st}</option>
 					{/each}

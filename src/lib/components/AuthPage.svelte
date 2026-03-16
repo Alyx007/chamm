@@ -99,7 +99,7 @@
 				</div>
 			{/if}
 
-			<form onsubmit={submit} class="space-y-4">
+			<form onsubmit={(e: SubmitEvent) => { e.preventDefault(); submit(); }} class="space-y-4">
 				{#if mode === 'register'}
 					<!-- Nickname -->
 					<div>

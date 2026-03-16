@@ -9,6 +9,8 @@
 	} = $props();
 </script>
 
+<svelte:window onkeydown={(e: KeyboardEvent) => { if (open && e.key === 'Escape') onclose(); }} />
+
 {#if open}
 	<!-- Backdrop -->
 	<div class="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm" role="presentation">
@@ -21,6 +23,7 @@
 			<div class="mb-5 flex items-center justify-between">
 				<h2 class="text-lg font-semibold text-surface-100">{title}</h2>
 				<button
+					aria-label="Close"
 					class="flex h-7 w-7 items-center justify-center rounded-lg text-surface-400 transition hover:bg-surface-700 hover:text-surface-200"
 					onclick={onclose}
 				>
